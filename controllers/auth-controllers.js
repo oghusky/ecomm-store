@@ -130,10 +130,18 @@ exports.putUpdateUser = async (req, res) => {
 // access private
 exports.deleteUser = async (req, res) => {
   try {
+    const { id } = req.params;
+    await Users.findByIdAndDelete(id);
     res
       .status(200)
       .json({
-        msg: "auth delete"
+        msg: "User Deleted"
+      });
+  } catch (err) {
+    res
+      .status(400)
+      .json({
+        msg: "User doesn't exist"
       })
-  } catch (err) { }
+  }
 }

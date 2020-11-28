@@ -11,9 +11,11 @@ app.use(express.static("client/build"));
 app.use(express.urlencoded({ extended: true }));
 
 
-app.get("/test", (req, res) => {
+app.get("/", (req, res) => {
   res.json({ msg: "SERVER UP!" });
-})
+});
+
+app.use("/api/auth", require('./routes/auth-routes'));
 
 // listening port
 app.listen(PORT, () => {
